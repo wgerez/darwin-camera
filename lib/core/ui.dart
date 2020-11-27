@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:camera/camera.dart';
 import 'package:darwin_camera/core/core.dart';
@@ -164,14 +165,18 @@ class RenderCapturedImage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Positioned.fill(
-          child: Container(
-            color: DarwinBlack,
-            height: double.infinity,
-            child: Image.file(
-              file,
-              fit: BoxFit.contain,
-              width: double.infinity,
-              alignment: Alignment.center,
+          child: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.rotationY(math.pi),
+            child: Container(
+              color: DarwinBlack,
+              height: double.infinity,
+              child: Image.file(
+                file,
+                fit: BoxFit.contain,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
             ),
           ),
         ),
