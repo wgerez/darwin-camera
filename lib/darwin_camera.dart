@@ -253,6 +253,7 @@ class _DarwinCameraState extends State<DarwinCamera>
         onTap: null,
         opacity: 0,
       ),
+      cameraIndex: cameraIndex
     );
   }
 }

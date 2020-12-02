@@ -150,6 +150,7 @@ class RenderCapturedImage extends StatelessWidget {
   final Widget leftFooterButton;
   final Widget centerFooterButton;
   final Widget rightFooterButton;
+  final int cameraIndex;
 
   ///
   const RenderCapturedImage({
@@ -158,14 +159,16 @@ class RenderCapturedImage extends StatelessWidget {
     @required this.leftFooterButton,
     @required this.centerFooterButton,
     @required this.rightFooterButton,
+    @required this.cameraIndex
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("🔥 CAMERA: $cameraIndex");
     return Stack(
       children: <Widget>[
         Positioned.fill(
-          child: Transform(
+          child: cameraIndex == 1 ? Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationY(math.pi),
             child: Container(
@@ -178,7 +181,17 @@ class RenderCapturedImage extends StatelessWidget {
                 alignment: Alignment.center,
               ),
             ),
-          ),
+          )
+          : Container(
+              color: DarwinBlack,
+              height: double.infinity,
+              child: Image.file(
+                file,
+                fit: BoxFit.contain,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
+            )
         ),
         CameraFooter(
           leftButton: leftFooterButton,
